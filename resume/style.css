@@ -1,0 +1,43 @@
+.center {
+    text-align: center;
+  }
+
+h2, h1{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+.contacts{
+    color: grey;
+}
+
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
+td{
+    border: 2px solid;
+    border-color: lightgrey;
+    padding-left: 10px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+table {
+    border: 2px solid;
+    border-color: lightgrey;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+ul.a{
+    list-style-type: "\25C6";
+}
+ul.b{
+    list-style-type: "\25BA";
+}
+ul.c{
+    list-style-type: circle;
+}
