@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="last">
+        <div>
+            <div class="first">
+                <div class="due">DUE</div>
+                <div class="invoiceWord">Invoice</div>
+            </div>
+            <p class="thanks">Thank you for your purchase. Timely payment will be appreciated.</p>
+        </div>
+        <div>
+            <img src="logo.png" alt="ADD YOUR LOGO" width="170" height="100">
+        </div>
+    </div>
+
+    <div class="row">
+        <form>
+            <div class="column1">
+                <label for="invoiceNumber"><b>Invoice No.</b></label><br>
+                <div class="first">
+                    <label class="invoiceNumberHash">#</label>
+                    <input type="text" id="invoiceNumber" name="invoiceNumber" value="INV-694" readonly>
+                </div>
+            </div>
+
+            <div class="column5">
+                <label for="language"><b>Language</b></label><br>
+                <select name="language" id="language">
+                    <option value="english">English (EN)</option>
+                </select>
+            </div>
+
+            <div class="column5">
+                <label for="currency"><b>Currency</b></label><br>
+                <select name="currency" id="currency" onchange="setCurrency()">
+                    <option value="INR">Indian National Rupee - INR</option>
+                    <option value="GPB">British Pound - GBP</option>
+                    <option value="USD">U.S. Dollar - USD</option>
+                    <option value="AED">UAE Dirham - AED</option>
+                    <option value="EUR">Euro - EUR</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <form>
+            <div class="column1">
+                <label for="from"><b>From</b></label><br>
+                <textarea id="from" name="from" rows="4" cols="50" readonly>Your Business, Inc.
+Your Address
+City & Zip, Your Country</textarea><br>
+
+                <label for="to"><b>To</b></label><br>
+                <textarea id="to" name="to" rows="4" cols="50"></textarea><br>
+            </div>
+
+            <div class="column2"><label for="date"><b>Date</b></label><br>
+                <input type="date" id="date" name="date"><br><br>
+
+                <label for="due"><b>Invoice Due</b></label><br>
+                <select name="due" id="due">
+                    <option value="5days">After 5 days</option>
+                    <option value="10days">After 10 days</option>
+                    <option value="15days">After 15 days</option>
+                    <option value="20days">After 20 days</option>
+                    <option value="30days">After 30 days</option>
+                </select>
+                <br><br>
+
+                <label for="pon"><b>Purchase Order Number</b></label><br>
+                <input id="pon" name="pons"><br>
+            </div>
+        </form>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="column3">
+            <p><b>Name</b></p>
+        </div>
+        <div class="column4">
+            <p><b>Quantity</b></p>
+        </div>
+        <div class="column4">
+            <p><b>Rate</b></p>
+        </div>
+        <div class="column4">
+            <p><b>Amount</b></p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="itemForm" id="item0">
+        <div class="row">
+            <div class="column3">
+                <textarea id="iName0" name="iName0" rows="4" cols="50" class="nameTA"></textarea>
+            </div>
+            <div class="column4">
+                <input type="text" id="iQuantity0" name="iQuantity0" value=0 onkeyup="changeAmount()">
+            </div>
+            <div class="column4">
+                <input type="text" id="iRate0" name="iRate0" value=0 onkeyup="changeAmount()">
+            </div>
+            <div class="column4 first">
+                <input type="text" id="curr1" name="curr1" class="curr" value="INR" readonly>
+                <input type="text" id="iAmount0" name="iAmount0" value=0 class="iAmount" readonly>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+
+    <div class="row">
+        <div class="column1">
+            <button type="button" class="newLine" onclick="newLine()">New Line</button>
+        </div>
+        <div class="column2">
+            <div class="last">
+                <label for="subTotal"><b>Sub Total</b></label>
+                <input type="text" id="subTotal" name="subTotal" value=0 readonly class="finalAmounts">
+            </div>
+            <hr>
+            <div class="last">
+                <div>
+                    <label for="vAT"><b>Value Added Tax</b></label>
+                    <input type="text" id="vAT" name="vAT" value=0 onkeyup="changeAmount()">
+                </div>
+                <input type="text" id="vATAmount" name="vAT" value=0 readonly class="finalAmounts">
+            </div>
+            <hr>
+            <div>
+                <div class="last">
+                    <label for="total" id="totalLabel"><b>Total (INR)</b></label>
+                    <input type="text" id="total" name="total" value=0 readonly class="finalAmounts">
+                </div>
+                <br>
+                <div class="first">
+                    <label for="totalDue" id="totalDueLabel" class="totalDueLabel"><b>Total Due</b></label>
+                    <label for="totalDue" id="totalDueCurr" class="totalDueCurr"><b>INR</b></label>
+                    <input type="text" id="totalDue" name="totalDue" value=0 readonly class="totalDue">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

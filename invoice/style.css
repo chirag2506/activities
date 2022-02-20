@@ -1,0 +1,130 @@
+*{
+  font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+textarea {
+  resize: none;
+}
+
+.column1{
+  float: left;
+  width: 50%;
+}
+
+.column2{
+  float:left;
+  width: 50%;
+}
+
+.column3 {
+  float: left;
+  width: 55%;
+  /* padding: 10px; */
+}
+
+.column4{
+  float: left;
+  width: 15%;
+}
+
+.column5{
+  float: left;
+  width: 25%;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.invoiceNumberHash{
+  width:fit-content;
+  padding-left: 3px;
+  padding-right: 3px;
+  background-color: lightgray;
+}
+
+.newLine{
+  background-color: rgb(116, 125, 156);
+  color: white;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.thanks{
+  border: 2px solid;
+  border-color: gray;
+  display: inline-block;
+}
+
+.first{
+  display: flex;
+  justify-content:left;
+}
+
+.last{
+  display: flex;
+  justify-content:space-between;
+  width: 100%;
+}
+
+.curr{
+  width: 25px;
+}
+
+/* .nameTA{
+  width:0%;
+} */
+
+.due{
+  background-color: rgb(226, 82, 85);
+  color: white;
+  font-size: large;
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.invoiceWord{
+  font-size:xx-large;
+  padding-left: 12px;
+}
+
+.finalAmounts{
+  border: none;
+}
+
+.totalDueLabel{
+  background-color: rgb(226, 82, 85);
+  color: white;
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: fit-content;
+}
+
+.totalDueCurr{
+  border: 1px solid;
+  border-color: rgb(226, 82, 85);
+  border-right: none;
+  color: black;
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: fit-content;
+}
+
+.totalDue{
+  border: 1px solid;
+  border-color: rgb(226, 82, 85);
+  border-left: none;
+  text-align: right;
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
