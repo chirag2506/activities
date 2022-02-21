@@ -17,6 +17,7 @@ function newLine() {
     iQuantity = 'iQuantity'.concat(form_number.toString());
     iRate = 'iRate'.concat(form_number.toString());
     iAmount = 'iAmount'.concat(form_number.toString());
+    curr = 'curr'.concat(form_number.toString());
 
     clone.find('#iName0').attr("name", iName);
     clone.find('#iName0').attr("id", iName);
@@ -29,6 +30,11 @@ function newLine() {
 
     clone.find('#iAmount0').attr("name", iAmount);
     clone.find('#iAmount0').attr("id", iAmount);
+
+    clone.find('#curr0').attr("name", curr);
+    //setting current currency in curr
+    clone.find('#curr0').attr("value", document.getElementById("currency").options[currency.selectedIndex].value);
+    clone.find('#curr0').attr("id", curr);
 
     // console.log(clone[0]);
     let div_to_append = '<div class="itemForm" id="item'.concat(form_number.toString(), '">', clone[0].innerHTML, '</div');
@@ -82,7 +88,25 @@ function setCurrency() {
     var currency = document.getElementById("currency");
     var currency_name = currency.options[currency.selectedIndex].value;
 
-    document.getElementById("curr1").value = currency_name;
+
+    for (let index = 0; index < id; index++) {
+        document.getElementById("curr".concat(index)).value = currency_name;
+    }
+    document.getElementById("curr0").value = currency_name;
     document.getElementById("totalLabel").innerHTML = "<b>Total (".concat(currency_name, ")</b>");
     document.getElementById("totalDueCurr").innerHTML = "<b>".concat(currency_name, "</b>");
+}
+
+function download(){
+    element = document.getElementById("page");
+
+    var opt = {
+        margin:       0.25,
+        filename:     'invoice.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'legal', orientation: 'landscape' }
+      };
+
+    html2pdf().set(opt).from(element).save("invoice.pdf");
 }

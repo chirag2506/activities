@@ -2,6 +2,11 @@
   font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
 }
 
+.mainpage{
+  padding: 10px;
+  border: 1px solid;
+}
+
 textarea {
   resize: none;
 }
@@ -53,6 +58,9 @@ textarea {
   border-radius: 5px;
   padding: 8px;
 }
+.newLine:hover{
+  background-color: rgb(0, 125, 156);
+}
 
 .thanks{
   border: 2px solid;
@@ -75,14 +83,10 @@ textarea {
   width: 25px;
 }
 
-/* .nameTA{
-  width:0%;
-} */
-
 .due{
   background-color: rgb(226, 82, 85);
   color: white;
-  font-size: large;
+  font-size: medium;
   padding: 8px;
   padding-left: 12px;
   padding-right: 12px;
@@ -127,4 +131,15 @@ textarea {
   padding: 8px;
   padding-left: 12px;
   padding-right: 12px;
+}
+
+.download_div{
+  padding: 20px;
+  padding-bottom: 0px;
+  display: flex;
+  justify-content:right;
+}
+
+.download:hover{
+  background-color: rgb(0, 82, 85);
 }
