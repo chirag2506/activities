@@ -143,3 +143,7 @@ textarea {
 .download:hover{
   background-color: rgb(0, 82, 85);
 }
+
+.itemForm{
+  padding-bottom: 10px;
+}

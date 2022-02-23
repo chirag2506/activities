@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -113,7 +114,15 @@ City & Zip, Your Country</textarea><br>
             <div class="itemForm" id="item0">
                 <div class="row">
                     <div class="column3">
-                        <textarea id="iName0" name="iName0" rows="4" cols="50" class="nameTA"></textarea>
+                        <div>
+                            <textarea id="iName0" name="iName0" rows="4" cols="50" class="nameTA"></textarea>
+                        </div>
+                        <div>
+                            <button type="button" id="iCopyButton0" onClick="copyForm(this.id)"><i
+                                    class="fa fa-copy"></i></button>
+                            <button type="button" id="iDeleteButton0" onClick="deleteForm(this.id)"><i
+                                    class="fa fa-trash"></i></button>
+                        </div>
                     </div>
                     <div class="column4">
                         <input type="text" id="iQuantity0" name="iQuantity0" value=0 onkeyup="changeAmount()">
@@ -133,7 +142,7 @@ City & Zip, Your Country</textarea><br>
 
             <div class="row">
                 <div class="column1">
-                    <button type="button" class="newLine" onclick="newLine()">New Line</button>
+                    <button type="button" class="newLine" onclick="newLine('#item0','0')">New Line</button>
                 </div>
                 <div class="column2">
                     <div class="last">

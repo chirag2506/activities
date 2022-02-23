@@ -5,12 +5,12 @@ function IDgenerate() {
     return id++;
 }
 
-function newLine() {
+function newLine(item_id, current_form_number) {
     formList = document.getElementsByClassName("itemForm");
     formItem = formList[formList.length - 1];
     // console.log(formItem);
 
-    let clone = $("#item0").clone();
+    let clone = $(item_id).clone();
     var form_number = IDgenerate();
 
     iName = 'iName'.concat(form_number.toString());
@@ -18,23 +18,30 @@ function newLine() {
     iRate = 'iRate'.concat(form_number.toString());
     iAmount = 'iAmount'.concat(form_number.toString());
     curr = 'curr'.concat(form_number.toString());
+    iCopy = 'iCopyButton'.concat(form_number.toString());
+    iDelete = 'iDeleteButton'.concat(form_number.toString());
 
-    clone.find('#iName0').attr("name", iName);
-    clone.find('#iName0').attr("id", iName);
+    clone.find('#iName'.concat(current_form_number)).attr("name", iName);
+    clone.find('#iName'.concat(current_form_number)).attr("id", iName);
 
-    clone.find('#iQuantity0').attr("name", iQuantity);
-    clone.find('#iQuantity0').attr("id", iQuantity);
+    clone.find('#iQuantity'.concat(current_form_number)).attr("name", iQuantity);
+    clone.find('#iQuantity'.concat(current_form_number)).attr("id", iQuantity);
 
-    clone.find('#iRate0').attr("name", iRate);
-    clone.find('#iRate0').attr("id", iRate);
+    clone.find('#iRate'.concat(current_form_number)).attr("name", iRate);
+    clone.find('#iRate'.concat(current_form_number)).attr("id", iRate);
 
-    clone.find('#iAmount0').attr("name", iAmount);
-    clone.find('#iAmount0').attr("id", iAmount);
+    clone.find('#iAmount'.concat(current_form_number)).attr("name", iAmount);
+    clone.find('#iAmount'.concat(current_form_number)).attr("id", iAmount);
 
-    clone.find('#curr0').attr("name", curr);
+    clone.find('#curr'.concat(current_form_number)).attr("name", curr);
     //setting current currency in curr
-    clone.find('#curr0').attr("value", document.getElementById("currency").options[currency.selectedIndex].value);
-    clone.find('#curr0').attr("id", curr);
+    clone.find('#curr'.concat(current_form_number)).attr("value", document.getElementById("currency").options[currency.selectedIndex].value);
+    clone.find('#curr'.concat(current_form_number)).attr("id", curr);
+
+    // clone.find('#iCopyButton0').attr("name", iName);
+    clone.find('#iCopyButton'.concat(current_form_number)).attr("id", iCopy);
+
+    clone.find('#iDeleteButton'.concat(current_form_number)).attr("id", iDelete);
 
     // console.log(clone[0]);
     let div_to_append = '<div class="itemForm" id="item'.concat(form_number.toString(), '">', clone[0].innerHTML, '</div');
@@ -97,16 +104,62 @@ function setCurrency() {
     document.getElementById("totalDueCurr").innerHTML = "<b>".concat(currency_name, "</b>");
 }
 
-function download(){
+function download() {
     element = document.getElementById("page");
 
     var opt = {
-        margin:       0.25,
-        filename:     'invoice.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'legal', orientation: 'landscape' }
-      };
+        margin: 0.25,
+        filename: 'invoice.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'legal', orientation: 'landscape' }
+    };
 
     html2pdf().set(opt).from(element).save("invoice.pdf");
+}
+
+function copyForm(clicked_id) {
+
+    current_form_number = clicked_id.slice(clicked_id.length - 1);
+
+    newLine("#item".concat(current_form_number), current_form_number);
+
+    new_form_number = id - 1;
+    document.getElementById('iName'.concat(new_form_number.toString())).value =
+        document.getElementById('iName'.concat(current_form_number)).value;
+    document.getElementById('iQuantity'.concat(new_form_number.toString())).value =
+        document.getElementById('iQuantity'.concat(current_form_number)).value;
+    document.getElementById('iRate'.concat(new_form_number.toString())).value =
+        document.getElementById('iRate'.concat(current_form_number)).value;
+    document.getElementById('iAmount'.concat(new_form_number.toString())).value =
+        document.getElementById('iAmount'.concat(current_form_number)).value;
+
+    changeAmount();
+
+}
+
+function deleteForm(delete_id) {
+    
+    --id;
+
+
+    current_form_number = delete_id.slice(delete_id.length - 1);
+    curent_form = document.getElementById("item".concat(current_form_number));
+    curent_form.remove();
+
+    document.getElementById("item".concat(id)).id = 'item'.concat(current_form_number);
+    document.getElementById("iName".concat(id)).name = 'iName'.concat(current_form_number);
+    document.getElementById("iName".concat(id)).id = 'iName'.concat(current_form_number);
+    document.getElementById("iQuantity".concat(id)).name = 'iQuantity'.concat(current_form_number);
+    document.getElementById("iQuantity".concat(id)).id = 'iQuantity'.concat(current_form_number);
+    document.getElementById("iRate".concat(id)).name = 'iRate'.concat(current_form_number);
+    document.getElementById("iRate".concat(id)).id = 'iRate'.concat(current_form_number);
+    document.getElementById("iAmount".concat(id)).name = 'iAmount'.concat(current_form_number);
+    document.getElementById("iAmount".concat(id)).id = 'iAmount'.concat(current_form_number);
+    document.getElementById("curr".concat(id)).name = 'curr'.concat(current_form_number);
+    document.getElementById("curr".concat(id)).id = 'curr'.concat(current_form_number);
+    document.getElementById("iCopyButton".concat(id)).id = 'iCopyButton'.concat(current_form_number);
+    document.getElementById("iDeleteButton".concat(id)).id = 'iDeleteButton'.concat(current_form_number);
+
+    changeAmount();
 }
