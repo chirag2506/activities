@@ -147,3 +147,9 @@ textarea {
 .itemForm{
   padding-bottom: 10px;
 }
+
+.formButtons{
+  padding-top: 0px;
+  display: flex;
+  justify-content: left;
+}

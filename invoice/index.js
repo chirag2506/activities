@@ -90,18 +90,34 @@ function changeTotal() {
     document.getElementById("totalDue").value = subTotal + (subTotal * vat / 100);
 }
 
+var currency_dict = {
+    "INR": 1,
+    "GBP": 101.45,
+    "USD": 74.64,
+    "AED": 20.32,
+    "EUR": 84.55,
+
+};
+var currency_active = "INR";
 function setCurrency() {
 
     var currency = document.getElementById("currency");
-    var currency_name = currency.options[currency.selectedIndex].value;
+    var new_currency_name = currency.options[currency.selectedIndex].value;
 
+    // console.log(currency_dict[currency_active]);
+    // console.log(currency_dict[new_currency_name]);
+    conversion_factor = currency_dict[currency_active]/currency_dict[new_currency_name];
+    // console.log(conversion_factor);
 
     for (let index = 0; index < id; index++) {
-        document.getElementById("curr".concat(index)).value = currency_name;
+        document.getElementById("curr".concat(index)).value = new_currency_name;
+        document.getElementById("iRate".concat(index)).value *= conversion_factor;
     }
-    document.getElementById("curr0").value = currency_name;
-    document.getElementById("totalLabel").innerHTML = "<b>Total (".concat(currency_name, ")</b>");
-    document.getElementById("totalDueCurr").innerHTML = "<b>".concat(currency_name, "</b>");
+    document.getElementById("totalLabel").innerHTML = "<b>Total (".concat(new_currency_name, ")</b>");
+    document.getElementById("totalDueCurr").innerHTML = "<b>".concat(new_currency_name, "</b>");
+
+    changeAmount();
+    currency_active = new_currency_name;
 }
 
 function download() {
@@ -139,7 +155,7 @@ function copyForm(clicked_id) {
 }
 
 function deleteForm(delete_id) {
-    
+
     --id;
 
 
