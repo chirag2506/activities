@@ -54,8 +54,11 @@ function changeAmount() {
 
     //update amount for each item
 
-    forms_length = document.getElementsByClassName("itemForm").length;
-    for (let index = 0; index < forms_length; index++) {
+    // forms_length = document.getElementsByClassName("itemForm").length;
+    for (let index = 0; index < id; index++) {
+        if (!document.getElementById(`item${index}`)) {
+            continue;
+        }
         qunatity = document.getElementById("iQuantity".concat(index)).value;
         rate = document.getElementById("iRate".concat(index)).value;
         document.getElementById("iAmount".concat(index)).value = qunatity * rate;
@@ -69,9 +72,12 @@ function changeAmount() {
 function changeSubTotal() {
 
     //update total amount (wihout tax)
-    forms_length = document.getElementsByClassName("itemForm").length;
+    // forms_length = document.getElementsByClassName("itemForm").length;
     let subTotal = 0;
-    for (let index = 0; index < forms_length; index++) {
+    for (let index = 0; index < id; index++) {
+        if (!document.getElementById(`item${index}`)) {
+            continue;
+        }
         subTotal += Number(document.getElementById("iAmount".concat(index)).value);
     }
 
@@ -106,7 +112,7 @@ function setCurrency() {
 
     // console.log(currency_dict[currency_active]);
     // console.log(currency_dict[new_currency_name]);
-    conversion_factor = currency_dict[currency_active]/currency_dict[new_currency_name];
+    conversion_factor = currency_dict[currency_active] / currency_dict[new_currency_name];
     // console.log(conversion_factor);
 
     for (let index = 0; index < id; index++) {
@@ -156,26 +162,17 @@ function copyForm(clicked_id) {
 
 function deleteForm(delete_id) {
 
-    --id;
-
-
     current_form_number = delete_id.slice(delete_id.length - 1);
     curent_form = document.getElementById("item".concat(current_form_number));
     curent_form.remove();
 
-    document.getElementById("item".concat(id)).id = 'item'.concat(current_form_number);
-    document.getElementById("iName".concat(id)).name = 'iName'.concat(current_form_number);
-    document.getElementById("iName".concat(id)).id = 'iName'.concat(current_form_number);
-    document.getElementById("iQuantity".concat(id)).name = 'iQuantity'.concat(current_form_number);
-    document.getElementById("iQuantity".concat(id)).id = 'iQuantity'.concat(current_form_number);
-    document.getElementById("iRate".concat(id)).name = 'iRate'.concat(current_form_number);
-    document.getElementById("iRate".concat(id)).id = 'iRate'.concat(current_form_number);
-    document.getElementById("iAmount".concat(id)).name = 'iAmount'.concat(current_form_number);
-    document.getElementById("iAmount".concat(id)).id = 'iAmount'.concat(current_form_number);
-    document.getElementById("curr".concat(id)).name = 'curr'.concat(current_form_number);
-    document.getElementById("curr".concat(id)).id = 'curr'.concat(current_form_number);
-    document.getElementById("iCopyButton".concat(id)).id = 'iCopyButton'.concat(current_form_number);
-    document.getElementById("iDeleteButton".concat(id)).id = 'iDeleteButton'.concat(current_form_number);
-
     changeAmount();
 }
+
+// const forms = document.getElementsByClassName("itemForm");
+
+// if (forms.length === 1) {
+//     forms[0].querySelectorAll("button")[1].disabled = true;
+// }else{
+//     forms[0].querySelectorAll("button")[1].disabled = false;
+// }
