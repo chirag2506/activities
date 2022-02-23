@@ -1,11 +1,21 @@
 console.log("hello");
 
+const forms = document.getElementsByClassName("itemForm");
+if (forms.length === 1) {
+    forms[0].querySelectorAll("button")[1].disabled = true;
+}
+
 let id = 1;
 function IDgenerate() {
     return id++;
 }
 
 function newLine(item_id, current_form_number) {
+
+    if (forms.length === 1) {
+        forms[0].querySelectorAll("button")[1].disabled = false;
+    }
+
     formList = document.getElementsByClassName("itemForm");
     formItem = formList[formList.length - 1];
     // console.log(formItem);
@@ -116,6 +126,9 @@ function setCurrency() {
     // console.log(conversion_factor);
 
     for (let index = 0; index < id; index++) {
+        if (!document.getElementById(`item${index}`)) {
+            continue;
+        }
         document.getElementById("curr".concat(index)).value = new_currency_name;
         document.getElementById("iRate".concat(index)).value *= conversion_factor;
     }
@@ -166,13 +179,9 @@ function deleteForm(delete_id) {
     curent_form = document.getElementById("item".concat(current_form_number));
     curent_form.remove();
 
+    if (forms.length === 1) {
+        forms[0].querySelectorAll("button")[1].disabled = true;
+    }
+
     changeAmount();
 }
-
-// const forms = document.getElementsByClassName("itemForm");
-
-// if (forms.length === 1) {
-//     forms[0].querySelectorAll("button")[1].disabled = true;
-// }else{
-//     forms[0].querySelectorAll("button")[1].disabled = false;
-// }
