@@ -10,7 +10,7 @@ function IDgenerate() {
     return id++;
 }
 
-function newLine(item_id, current_form_number) {
+function AddNewLine(item_id, current_form_number) {
 
     if (forms.length === 1) {
         forms[0].querySelectorAll("button")[1].disabled = false;
@@ -58,6 +58,14 @@ function newLine(item_id, current_form_number) {
     // console.log(div_to_append);
 
     formItem.insertAdjacentHTML('afterend', div_to_append);
+}
+
+function newLine(){
+    
+    first_form_in_list_id = forms[0].id;
+    first_form_in_list_id_number = first_form_in_list_id.slice(first_form_in_list_id.length - 1);
+    
+    AddNewLine(`#${first_form_in_list_id}`, first_form_in_list_id_number);
 }
 
 function changeAmount() {
@@ -157,7 +165,7 @@ function copyForm(clicked_id) {
 
     current_form_number = clicked_id.slice(clicked_id.length - 1);
 
-    newLine("#item".concat(current_form_number), current_form_number);
+    AddNewLine("#item".concat(current_form_number), current_form_number);
 
     new_form_number = id - 1;
     document.getElementById('iName'.concat(new_form_number.toString())).value =
