@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strings in JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Strings in JavaScript</h1>
+    <ul>
+        <li>String Initializations</li>
+        <li>Template Literals</li>
+        <li>Concatenation</li>
+        <li>Escape Charactes</li>
+        <li>String Methods:
+            <ul>
+                <li>Length</li>
+                <li>Concat</li>
+                <li>Slicing</li>
+                <li>Index Of</li>
+                <li>Replace</li>
+                <li>Change to Uppercase/Lowercase</li>
+                <li>Removing whitespace</li>
+                <li>Getting character at an index</li>
+                <li>Convert into an array</li>
+                <li>Repeating a string</li>
+            </ul>
+        </li>
+        <li>
+            <div>Reversing</div>
+            <div class="forms">
+                <form>
+                    <div>
+                        <label for="userString">Enter a String to get its reverse:</label>
+                        <input type="text" name="userString" id="userString">
+                    </div>
+                    <div>
+                        <label for="reversedString">Reversed String:</label>
+                        <input type="text" name="reversedString" id="reversedString" readonly>
+                    </div>
+                    <button type="button" onClick="reverseString()">REVERSE</button>
+                </form>
+            </div>
+        </li>
+        <li>
+            <div>Comparing</div>
+            <div class="forms">
+                <form>
+                    <div>
+                        <label for="string1">Enter String1:</label>
+                        <input type="text" name="string1" id="string1">
+                    </div>
+                    <div>
+                        <label for="string2">Enter String2:</label>
+                        <input type="text" name="string2" id="string2">
+                    </div>
+                    <div>
+                        <label for="compareResult">Result:</label>
+                        <input type="text" name="compareResult" id="compareResult" readonly style="width: 500px;">
+                    </div>
+                    <button type="button" onClick="compareStrings()">COMPARE</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+</body>
+<script src="script.js"></script>
+
+</html>
