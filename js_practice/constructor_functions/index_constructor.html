@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,22 @@
     <title>Constructor Functions</title>
     <link rel="stylesheet" href="style_constructor.css">
 </head>
+
 <body>
     <h1>Constructor Functions</h1>
+    <ul>
+        <li>Constructor functions are functions designed to construct a new object. Within a constructor function, the
+            keyword this refers to a newly created object which values can be assigned to. Constructor functions
+            "return" this new object automatically.</li>
+        <li>Constructor functions are invoked using the new keyword.</li>
+        <li>Constructor functions also have a prototype property which points to an object whose properties are
+            automatically inherited by all objects created with that constructor.</li>
+        <li>Objects created by constructor functions also have a special property on their prototype called constructor,
+            which points to the function used to create them.</li>
+        <li>Objects created by constructor functions are also considered to be "instances" of the constructor function
+            by the instanceof operator.</li>
+    </ul>
 </body>
-<script src = "script_constructor.js"></script>
+<script src="script_constructor.js"></script>
+
 </html>
