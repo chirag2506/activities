@@ -43,4 +43,16 @@ console.log("Hello");
 //         }
 //     }
 // }
+
 // var prism3 = l => w => h => l * w * h;
+
+// var sum = function(a){
+//     return function(b){
+//         return a+b;
+//     }
+// };
+
+// var addToFive = sum(5)
+
+// console.log(addToFive(4));
+
