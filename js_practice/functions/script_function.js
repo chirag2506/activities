@@ -56,3 +56,47 @@ console.log("Hello");
 
 // console.log(addToFive(4));
 
+// //Extra Example
+// function foo() {
+//     let a = b = 0;
+//     a++;
+//     console.log(a)
+//     console.log(b)
+//     return a;
+//   }
+// foo();
+// console.log(typeof a) 
+// console.log(typeof b)
+
+// //Immediately Invoked Function Expressions
+// //The function itself and any internal variables will be inaccessible from outside (cannot be called)
+// (function a() {
+//     console.log("I am a");
+// }());
+// //or
+// (function b() {
+//     console.log("I am b");
+// })();
+// //or
+// (() => console.log("Hello!"))();
+// a();
+
+// //Variadic Functions
+// function var1() {
+//     for (let index = 0; index < arguments.length; index++) {
+//         console.log(arguments[index]);
+
+//     }
+// }
+// var1(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
+
+// function var2(person, ...msg) {
+//     msg.forEach(arg => {
+//         console.log(person, 'say', arg);
+//     });
+// }
+// var2('I', 'hello', 'bye');
+
+// const var3 = (...args) => console.log(args)
+// const list = [1, 2, 3]
+// var3('a', 'b', 'c', ...list)
