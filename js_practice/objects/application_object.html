@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application of Objects</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css" />
+    <link rel="stylesheet" href="style_application.css">
+</head>
+
+<body>
+    <div class="heading">
+        <h1><u>Application of Objects</u></h1>
+    </div>
+    <div style="padding: 100px; padding-top: 30px;">
+        <div class="app">
+            <div class="container mt-4">
+                <h1 class="display-4 text-center">
+                    <i class="fas fa-school" style="color: purple;"></i> Students
+                </h1>
+                <form id="student-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="rollno">Roll Number</label>
+                        <input type="text" id="rollno" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="percentage">Percentage</label>
+                        <input type="text" id="percentage" class="form-control" />
+                    </div>
+                    <button type="submit" class="addButton btn btn-primary btn-block">Add Student</button>
+                </form>
+                <table class="table table-striped mt-5">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Roll Number</th>
+                            <th>Percentage</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="students-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script_obj_application.js"></script>
+
+</html>

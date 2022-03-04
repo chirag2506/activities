@@ -1,0 +1,15 @@
+.addButton{
+    background-color: purple;
+    border-color: darkmagenta;
+    border-radius: 6px;
+}
+
+.app{
+    border: 1px solid;
+}
+
+.heading{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
