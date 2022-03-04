@@ -1,4 +1,4 @@
-class Student {
+class Student { //student object constructor
     constructor(name, rollno, percentage) {
         this.name = name
         this.rollno = rollno
@@ -43,13 +43,13 @@ class UI {
     }
 }
 
-//Add a Student
+//adding a student
 document.querySelector('#student-form').addEventListener('submit', addAStudent, false)
 
 function addAStudent(e) {
-    // prevent actual submission
+    //prevent actual submission
     e.preventDefault()
-    // Get Form Values
+    //getting form values
     const name = document.querySelector('#name').value;
     const rollno = document.querySelector('#rollno').value;
     const percentage = document.querySelector('#percentage').value;
@@ -67,10 +67,8 @@ function addAStudent(e) {
         return;
     }
 
-    // Instantiate a new Book object
-    const student = new Student(name, rollno, percentage)
-    // Add book object to UI
-    UI.addStudentToList(student)
+    const student = new Student(name, rollno, percentage) //new object
+    UI.addStudentToList(student) //adding to list
     UI.showAlert("Student Added", 'success')
     UI.clearFields();
 }
