@@ -7,6 +7,8 @@ class Student { //student object constructor
 }
 
 var index = 0;
+const Students = [];
+
 function generateIndex() {
     return index++;
 }
@@ -14,6 +16,7 @@ function generateIndex() {
 class UI {
 
     static addStudentToList = (student) => {
+        Students.push(student);
         const list = document.getElementById('students-list');
         const row = document.createElement('tr')
         const id = generateIndex();
@@ -26,6 +29,7 @@ class UI {
         list.appendChild(row)
 
         console.log(student);
+        console.log(Students);
     }
 
     static clearFields() {
@@ -74,5 +78,30 @@ function addAStudent(e) {
 }
 
 function deleteStudent(delete_id) {
+    text = document.getElementById(delete_id).parentElement.parentElement.innerText.split("\t");
+    const student = new Student(text[0], text[1], text[2]);
+    console.log(student);
+    const index = Students.indexOf(student);
+    // Students.splice(index, 1);
+    /*
+.
+.
+.
+.
+.
+.
+..
+
+.
+.
+.
+.
+.
+.
+.
+DELETION FROM LIST TO BE IMPLEMENTED 
+
+    */
+    console.log(index);
     document.getElementById(delete_id).parentElement.parentElement.remove()
 }
