@@ -1,52 +1,21 @@
-#fastAPI, uvicorn[standard], npm install uuid
+#fastAPI, uvicorn[standard], npm install uuid, jinja2, json2html
 
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 from typing import List
 import uuid
 from uuid import UUID
 from models import User, Gender, Role
+from apis.home import home_router
+from apis.users import user_router
 
 app = FastAPI()
+app.include_router(home_router)
+app.include_router(user_router)
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-db: List[User] = [
-    User(
-        id=UUID("7be937b1-4fb6-487b-8fda-bed3098bdb63"),
-        first_name='Chirag',
-        last_name='Gupta',
-        gender=Gender.male,
-        roles=[Role.student]
-    ),
-    User(
-        id=UUID("d6a6e5cd-8c7a-4e31-854b-48991a4fd228"),
-        first_name='Aadhya',
-        last_name='Gupta',
-        gender=Gender.female,
-        roles=[Role.user, Role.admin]
-    )
-]
-
-@app.get("/")
-def root():
-    return {"Hello":"World!"}
-
-@app.get("/users")
-def fetch_users():
-    return db
-
-@app.post("/users")
-async def register_user(user: User):
-    db.append(user)
-    return {"id": user.id}
-
-@app.delete("/users/{user_id}") #user_id is path variable
-def delete_user(user_id: UUID): #takes user of UUID type
-    for user in db:
-        if user.id == user_id:
-            db.remove(user)
-            return
-    raise HTTPException(
-        status_code = 404,
-        detail = f"user with id: {user_id} does not exist"
-    )
+# @app.get("/")
+# def root():
+#     return {"Hello":"World!"}
 
 #need to learn push(update) too
