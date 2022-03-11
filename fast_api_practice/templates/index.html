@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,34 @@
     <title>FastAPI</title>
     <link rel="stylesheet" href="{{ url_for('static', path='styles/index.css') }}">
 </head>
+
 <body>
-   <h1>FastAPI</h1>
-   Hello World!
+    <div>
+        <h1>FastAPI</h1>
+        Hello World!
+    </div>
+    <div id="forms" class="forms">
+        <div>
+            <form action="/users" method="post">
+                <input type="submit" value="List of Users" class="form_buttons">
+            </form>
+        </div>
+        <div>
+            <form action="/new_user" method="post">
+                <input type="submit" value="Add User" class="form_buttons">
+            </form>
+        </div>
+        <!-- <div>
+            <form action="/delete_user" method="post">
+                <input type="submit" value="Delete User" class="form_buttons">
+            </form>
+        </div>
+        <div>
+            <form action="/update_user" method="post">
+                <input type="submit" value="Update User" class="form_buttons">
+            </form>
+        </div> -->
+    </div>
 </body>
+
 </html>

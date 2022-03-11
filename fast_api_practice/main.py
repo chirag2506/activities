@@ -1,4 +1,4 @@
-#fastAPI, uvicorn[standard], npm install uuid, jinja2, json2html
+#fastAPI, uvicorn[standard], npm install uuid, jinja2, json2html, python-multipart
 
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import uuid
@@ -29,18 +29,33 @@ db: List[User] = [
     )
 ]
 
-@user_router.get("/users")
+@user_router.api_route("/users", methods=['GET', 'POST'])
 async def fetch_users(request: Request):
     df = pd.DataFrame.from_records([s.to_dict() for s in db])
-    # df = df.to_string(index=False, header=False)
     df = df.to_html(index=False)
     # return(db)
     return templates.TemplateResponse("user.html", {"request": request, "users": df})
 
-@user_router.post("/users")
-async def register_user(user: User):
-    db.append(user)
-    return {"id": user.id}
+@user_router.post("/new_user")
+# async def register_user(user: User):
+#     db.append(user)
+#     return {"id": user.id}
+async def open_new_user_page(request: Request):
+    return templates.TemplateResponse("addUser.html", {"request": request})
+
+@user_router.post("/added_successfully")
+async def register_user(request: Request, first_name: str = Form(...), last_name: str = Form(...)):
+    # print(first_name)
+    # print(last_name)
+    db.append(User(
+        id=uuid.uuid4(),
+        first_name=first_name,
+        last_name=last_name,
+        gender=Gender.male,
+        roles=[Role.student]
+    ))
+    return templates.TemplateResponse("addedSuccessfully.html", {"request": request})
+
 
 @user_router.delete("/users/{user_id}") #user_id is path variable
 def delete_user(user_id: UUID): #takes user of UUID type
