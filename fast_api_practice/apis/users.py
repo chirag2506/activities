@@ -6,6 +6,7 @@ from uuid import UUID
 from models import User, Gender, Role
 from typing import List
 import pandas as pd
+import json
 
 templates = Jinja2Templates(directory = "templates")
 
@@ -30,13 +31,11 @@ db: List[User] = [
 
 @user_router.get("/users")
 async def fetch_users(request: Request):
-
-    # df = pd.DataFrame(db)
-    # column = df.columns
-    # print(df)
-    # # df = df.to_html()
+    df = pd.DataFrame.from_records([s.to_dict() for s in db])
+    # df = df.to_string(index=False, header=False)
+    df = df.to_html(index=False)
     # return(db)
-    return templates.TemplateResponse("user.html", {"request": request, "users": db})
+    return templates.TemplateResponse("user.html", {"request": request, "users": df})
 
 @user_router.post("/users")
 async def register_user(user: User):
