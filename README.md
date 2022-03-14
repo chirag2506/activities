@@ -16,6 +16,7 @@ This could be done by storing tallest block on left of right of each block in se
 In my approach, I have further optimized the algorithm by reducing O(n) space to O(1) space by using two variables which store maximum height on both sides till that particular block and then using that to get height_of_water(block).
 
 <ins>Fast API</ins>
+
 To run, first run the following commands in terminal:
 pip install -r requirements.txt
 uvicorn main:app
