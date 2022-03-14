@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, Form
+from fastapi import APIRouter, Request, Form, HTTPException
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import uuid
@@ -65,5 +65,6 @@ def delete_user(user_id: UUID): #takes user of UUID type
             return
     raise HTTPException(
         status_code = 404,
-        detail = f"user with id: {user_id} does not exist"
+        detail = f"user with id: {user_id} does not exist",
+        headers={"X-Error": "This is my error"},
     )
