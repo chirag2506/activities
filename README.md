@@ -18,5 +18,7 @@ In my approach, I have further optimized the algorithm by reducing O(n) space to
 <ins>Fast API</ins>
 
 To run, first run the following commands in terminal:
+
 pip install -r requirements.txt
+
 uvicorn main:app
