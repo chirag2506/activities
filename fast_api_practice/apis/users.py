@@ -36,7 +36,7 @@ async def fetch_users(request: Request):
     # return(db)
     return templates.TemplateResponse("user.html", {"request": request, "users": df})
 
-@user_router.post("/new_user")
+@user_router.api_route("/new_user", methods=['GET', 'POST'])
 # async def register_user(user: User):
 #     db.append(user)
 #     return {"id": user.id}
@@ -44,15 +44,26 @@ async def open_new_user_page(request: Request):
     return templates.TemplateResponse("addUser.html", {"request": request})
 
 @user_router.post("/added_successfully")
-async def register_user(request: Request, first_name: str = Form(...), last_name: str = Form(...)):
+async def register_user(request: Request,
+                        first_name: str = Form(...),
+                        last_name: str = Form(...),
+                        gender: str = Form(...),
+                        roles: List = Form(...)):
     # print(first_name)
     # print(last_name)
+    # print(gender)
+    # print(roles)
+
+    role_list = []
+    for i in roles:
+        role_list.append(getattr(Role, i))
+
     db.append(User(
         id=uuid.uuid4(),
         first_name=first_name,
         last_name=last_name,
-        gender=Gender.male,
-        roles=[Role.student]
+        gender=getattr(Gender, gender),
+        roles=role_list
     ))
     return templates.TemplateResponse("addedSuccessfully.html", {"request": request})
 

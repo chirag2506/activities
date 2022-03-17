@@ -17,5 +17,3 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # @app.get("/")
 # def root():
 #     return {"Hello":"World!"}
-
-#need to learn push(update) too

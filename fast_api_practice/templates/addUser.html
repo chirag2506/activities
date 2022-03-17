@@ -6,22 +6,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add a User</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='styles/addUser.css') }}">
 </head>
 
 <body>
     <h1>Add a User</h1>
     <div>
         <form action="/added_successfully" method="post" enctype="multipart/form-data">
-            <div>
+            <div class="fields">
                 <label for="first_name">First Name:</label>
                 <input type="text" name="first_name" id="first_name">
             </div>
-            <div>
+            <div class="fields">
                 <label for="last_name">Last Name:</label>
                 <input type="text" name="last_name" id="last_name">
             </div>
-            <div>
-                <input type="submit" value="Submit">
+            <div class="fields">
+                <p>Please select gender:</p>
+                <div>
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="male">Male</label>
+                </div>
+                <div>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="female">Female</label>
+                </div>
+            </div>
+            <div class="fields">
+                <p>Please select roles:</p>
+                <div>
+                    <input type="checkbox" name="roles" id="admin" value="admin">
+                    <label for="admin">Admin</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="roles" id="user" value="user">
+                    <label for="user">User</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="roles" id="student" value="student">
+                    <label for="student">Student</label>
+                </div>
+            </div>
+            <div class="fields">
+                <input type="submit" value="Submit" class="form_buttons">
             </div>
         </form>
     </div>
