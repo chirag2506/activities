@@ -3,7 +3,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import uuid
 from uuid import UUID
-from models import User, Gender, Role
+from schemas import User, Gender, Role
 from typing import List
 import pandas as pd
 import json
@@ -49,14 +49,12 @@ async def register_user(request: Request,
                         last_name: str = Form(...),
                         gender: str = Form(...),
                         roles: List = Form(...)):
-    # print(first_name)
-    # print(last_name)
-    # print(gender)
-    # print(roles)
 
     role_list = []
     for i in roles:
         role_list.append(getattr(Role, i))
+    if(len(role_list)==0):
+        role_list.append(Role.user)
 
     db.append(User(
         id=uuid.uuid4(),

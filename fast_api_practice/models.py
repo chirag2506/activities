@@ -1,30 +1,12 @@
-from typing import Optional, List
-from uuid import UUID
-import uuid
-from pydantic import BaseModel
-from enum import Enum
+import sqlalchemy as sql
+import sqlalchemy.orm as orm
+import database as database
+from database import Base
 
-class Gender(str, Enum):
-    male = "male"
-    female = "female"
-
-class Role(str, Enum):
-    admin = "admin"
-    user = "user"
-    student = "student"
-
-class User(BaseModel):
-    id: Optional[UUID] = uuid.uuid4()
-    first_name: str
-    last_name: str
-    gender: Gender
-    roles: List[Role]
-
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'first_name': self.first_name,
-            'last_name': self.last_name,
-            'gender': self.gender,
-            'roles': self.roles
-        }
+class Student(database.Base):
+    __tablename__ = "students"
+    id = sql.Column(sql.Integer, primary_key=True, index=True)
+    name = sql.Column(sql.String)
+    student_class = sql.Column(sql.String)
+    marks = sql.Column(sql.Integer)
+    password = sql.Column(sql.String)
