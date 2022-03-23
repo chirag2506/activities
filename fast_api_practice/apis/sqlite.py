@@ -22,16 +22,30 @@ def get_db():
 templates = Jinja2Templates(directory = "templates")
 
 @sqlite_router.post("/sqlite", response_model=schemas.Student)
-def create_student(student: schemas.StudentCreate, db: Session = Depends(get_db)):
+async def create_student(student: schemas.StudentCreate, db: Session = Depends(get_db)):
     return crud.create_student(db=db, student=student)
 
 @sqlite_router.api_route("/sqlite/{student_id}", response_model=schemas.Student, methods=['GET', 'POST'])
-def read_student(student_id: int, db: Session = Depends(get_db)):
+async def read_student(student_id: int, db: Session = Depends(get_db)):
     db_student = crud.get_student(db, id=student_id)
     if db_student is None:
-        raise HTTPException(status_code=404, detail="student not found")
+        raise HTTPException(status_code=404, detail="Student not found")
     return db_student
 
 @sqlite_router.post("/enter_student_id")
 async def enter_student_id(request: Request):
     return templates.TemplateResponse("enterStudentID.html", {"request": request})
+
+@sqlite_router.delete("/sqlite/{student_id}")
+async def delete_student(student_id: int, db: Session = Depends(get_db)):
+    db_student = crud.delete_student(db, id=student_id)
+    if db_student is None:
+        raise HTTPException(status_code=404, detail="Student not found")
+    return {"Ok": "Deleted"}
+
+@sqlite_router.put("/sqlute/{student_id}")
+async def update_student(student_id: int, studentNew: schemas.StudentUpdate, db: Session = Depends(get_db)):
+    db_student = crud.update_student(db, id=student_id, studentNew=studentNew)
+    if db_student is None:
+        raise HTTPException(status_code=404, detail="Student not found")
+    return db_student

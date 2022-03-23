@@ -42,3 +42,8 @@ class Student(StudentBase):
 
     class Config:
         orm_mode = True
+
+class StudentUpdate(BaseModel):
+    name: Optional[str] = None
+    student_class: Optional[str] = None
+    marks: Optional[int] = None
