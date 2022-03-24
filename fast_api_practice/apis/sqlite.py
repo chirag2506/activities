@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Request, Depends, HTTPException
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-import models
-import schemas
+import models, schemas
+from typing import List
 from apis import crud
 from database import SessionLocal, engine
 
@@ -25,6 +25,13 @@ templates = Jinja2Templates(directory = "templates")
 async def create_student(student: schemas.StudentCreate, db: Session = Depends(get_db)):
     return crud.create_student(db=db, student=student)
 
+@sqlite_router.post("/sqlite/multiple")
+async def create_multiple_students(students: List[schemas.StudentCreate], db: Session = Depends(get_db)):
+    objects = []
+    for student in students:
+        objects.append(crud.create_student(db=db, student=student))
+    return {"ok": "inserted multiple students"}
+
 @sqlite_router.api_route("/sqlite/{student_id}", response_model=schemas.Student, methods=['GET', 'POST'])
 async def read_student(student_id: int, db: Session = Depends(get_db)):
     db_student = crud.get_student(db, id=student_id)
@@ -43,7 +50,7 @@ async def delete_student(student_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Student not found")
     return {"Ok": "Deleted"}
 
-@sqlite_router.put("/sqlute/{student_id}")
+@sqlite_router.put("/sqlite/{student_id}")
 async def update_student(student_id: int, studentNew: schemas.StudentUpdate, db: Session = Depends(get_db)):
     db_student = crud.update_student(db, id=student_id, studentNew=studentNew)
     if db_student is None:
