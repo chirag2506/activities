@@ -3,6 +3,9 @@ from uuid import UUID
 import uuid
 from pydantic import BaseModel
 from enum import Enum
+from sqlalchemy.orm import Session
+import models
+from auth.hash import hash_password as hashIt
 
 class Gender(str, Enum):
     male = "male"

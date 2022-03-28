@@ -8,7 +8,7 @@ from uuid import UUID
 from schemas import User, Gender, Role
 from apis.home import home_router
 from apis.users import user_router
-from apis.sqlite import sqlite_router
+from apis.sqliteRouter import sqlite_router
 
 app = FastAPI()
 app.include_router(home_router)
