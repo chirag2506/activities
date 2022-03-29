@@ -38,6 +38,7 @@ class StudentBase(BaseModel):
     marks: int
 
 class StudentCreate(StudentBase):
+    id: str
     password: str
 
 class Student(StudentBase):
