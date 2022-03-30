@@ -20,23 +20,37 @@ def create_student(db: Session, student: schemas.StudentCreate):
     hashed_password = hashIt(student.password)
     student_dict = student.dict()
     student_dict["password"] = hashed_password
-    db_student = models.Student(**student_dict)
-    db.add(db_student)
-    db.commit()
-    db.refresh(db_student)
+    # db_student = models.Student(**student_dict)
+    # db.add(db_student)
+    # db.commit()
+    # db.refresh(db_student)
+    # return db_student
 
-    # hashed_student = schemas.StudentCreate(name=student_dict["name"],
-    #                                        student_class=student_dict["student_class"],
-    #                                        marks=student_dict["marks"],
-    #                                        password=student_dict["password"])
-    # database.
-
-    return db_student
+    values = student_dict.values()
+    keys = student_dict.keys()
+    student_keys = "("
+    for key in keys:
+        student_keys += key + ", "
+    student_keys = student_keys[:len(student_keys)-2]
+    student_keys += ")"
+    if(database.write(student_keys, tuple(values), "students")):
+        return models.Student(**student_dict)
+    else:
+        return None    
+    # return {"ok": "done"}
+    
 
 def delete_student(db: Session, id: int):
-    student = db.get(models.Student, id)
-    db.delete(student)
-    db.commit()
+    # student = db.get(models.Student, id)
+    # db.delete(student)
+    # db.commit()
+    # return student
+    details = database.delete(id, "students")
+    student = schemas.StudentCreate(id=details[0],
+                                    name=details[1],
+                                    student_class=details[2],
+                                    marks=details[3],
+                                    password=details[4])
     return student
 
 def update_student(db: Session, id: int, studentNew: schemas.StudentUpdate):
