@@ -50,7 +50,7 @@ async def delete_student(student_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Student not found")
     return {"Ok": "Deleted"}
 
-@sqlite_router.put("/sqlite/{student_id}")
+@sqlite_router.put("/sqlite/{student_id}", response_model=schemas.Student)
 async def update_student(student_id: int, studentNew: schemas.StudentUpdate, db: Session = Depends(get_db)):
     db_student = crud.update_student(db, id=student_id, studentNew=studentNew)
     if db_student is None:

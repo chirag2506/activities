@@ -9,6 +9,8 @@ database = SqliteConnector("database.db")
 def get_student(db: Session, id: int):
     # return db.query(models.Student).filter(models.Student.id == id).first()
     details = database.read(id, "students")
+    if details is None:
+        return None
     student = schemas.StudentCreate(id=details[0],
                                     name=details[1],
                                     student_class=details[2],
@@ -46,6 +48,8 @@ def delete_student(db: Session, id: int):
     # db.commit()
     # return student
     details = database.delete(id, "students")
+    if details is None:
+        return None
     student = schemas.StudentCreate(id=details[0],
                                     name=details[1],
                                     student_class=details[2],
@@ -56,9 +60,20 @@ def delete_student(db: Session, id: int):
 def update_student(db: Session, id: int, studentNew: schemas.StudentUpdate):
     student = db.get(models.Student, id)
     studentNewData = studentNew.dict(exclude_unset=True)
-    for key, value in studentNewData.items():
-        setattr(student, key, value)
-    db.add(student)
-    db.commit()
-    db.refresh(student)
+    # for key, value in studentNewData.items():
+    #     setattr(student, key, value)
+    # db.add(student)
+    # db.commit()
+    # db.refresh(student)
+    # return student
+    values = tuple(studentNewData.values())
+    keys = tuple(studentNewData.keys())
+    newDetails = database.update(keys, values, id, "students")
+    if newDetails is None:
+        return None
+    student = schemas.StudentCreate(id=newDetails[0],
+                                    name=newDetails[1],
+                                    student_class=newDetails[2],
+                                    marks=newDetails[3],
+                                    password=newDetails[4])
     return student
